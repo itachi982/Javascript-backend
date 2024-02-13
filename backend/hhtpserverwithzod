@@ -1,0 +1,70 @@
+const bodyParser = require('body-parser');
+const express=require('express');
+const z=require('zod')
+
+const app=express();
+
+function usercheck(req,res,next){
+
+    const Email=req.body.Email;
+    const password=req.body.password;
+
+    if(Email!="vishalpatsariya99@gmail.com"||password!="root@123"){
+        res.status(403).json({
+            "message":"Invalid Username or Password"
+        })
+    }
+    else{
+        next();
+    }
+
+}
+
+function validate(obj){
+
+    const schema=z.object({
+        "Email":z.string().email(),
+        "password":z.string().min(8)
+    })
+
+    const response=schema.safeParse(obj);
+    return response;
+
+}
+
+app.use(bodyParser.json());
+
+
+
+app.post("/usercheck/zod",function(req,res,next){
+
+    const request=validate(req.body);
+    if(!request.success){
+       
+        if(request.error.issues.find((issue) => issue.validation === "email")){
+
+            res.json({
+                Message:"Please Enter a Valid Email"
+            })
+        }
+        else if(request.error.issues.find((issue) => issue.code === "too_small")){
+            res.json({
+                Message:"Password is less than minimum 8 character"
+            })
+        }
+        else{      
+            res.json({
+                Message:request//"Please check your password and email"
+            })
+        }
+    }
+    else{
+        next();
+    }
+},usercheck,function(req,res){
+    res.json({
+        Message:"Success"
+    })
+})
+
+app.listen(3001);
