@@ -1,7 +1,9 @@
 const express=require("express");
+//const zod=require("zod");
 
 const app=express();
 const port=3000;
+//const schema=zod.array(zod.number());
 
 function usercheck(req,res,next){
 
@@ -31,4 +33,17 @@ app.post("/checkcreads",(req,res)=>{
         })
 })
 
+//globl catches
+app.use((err,req,res,next)=>{
+    errorcount++;
+    if(errorcount>99){
+        console.log(`Warning error happend : ${errorcount}`)
+    }
+
+    res.json({
+        "message":"Error"
+    })
+})
+
 app.listen(port);
+
