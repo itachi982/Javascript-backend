@@ -54,7 +54,7 @@ app.post("/usercheck/zod",function(req,res,next){
         }
         else{      
             res.json({
-                Message:request//"Please check your password and email"
+                Message:"Please check your password and email"
             })
         }
     }
