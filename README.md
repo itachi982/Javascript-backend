@@ -1,2 +1,2 @@
 ## Resources created during my learning MERN stack 
-**they are for personal future refernces**
+**These will be used for future personal refernces**
