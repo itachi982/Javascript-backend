@@ -4,6 +4,17 @@
     async function getpeople(){
         const response=await fetch("https://fakerapi.it/api/v1/persons");
         const data = await response.json();
-        console.log(data);
+        let arr='';
+        //console.log(data.data[0].firstname);
+
+        for(let i=0;i<data.data.length;i++){
+            
+            arr+=" "+data.data[i].firstname;
+        }
+        const element=document.getElementById("result");
+        element.innerHTML=arr;
     }
 </script>
+
+
+<br></br><div id="result"></div>
