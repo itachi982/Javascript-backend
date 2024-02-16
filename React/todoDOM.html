@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>todo app</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <script>
+
+        function addtodo(){
+            const title=document.getElementById("title").value;
+            const desc=document.getElementById("desc").value;
+
+            const outerdiv=document.createElement("div");
+            outerdiv.innerHTML=title;
+
+            document.getElementById("container").appendChild(outerdiv);
+        }
+
+
+    </script>
+    
+    <body>
+
+        <div>
+            <input id="title" type="text" placeholder="title"></input><br></br>
+            <input id="desc" type="text" placeholder="description"></input><br></br>
+            <button onclick="addtodo()">Add task</button>
+        </div>
+
+        <div id="container"></div>
+        
+    </body>
+</html>
