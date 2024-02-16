@@ -1,18 +1,30 @@
 <html>
     <script>
             console.log("running");
-        function populatediv(){
-            const number1=document.getElementById("firstno").value;
-            const number2=document.getElementById("secondno").value;
-            const sum=parseInt(number1)+parseInt(number2);
-            const element=document.getElementById("finalSum");
-            element.innerHTML="Sum is :"+sum;
-        }
+
+            let timer;
+            function deboucepopulatediv(){
+
+                clearTimeout(timer);
+                timer=setTimeout(function(){
+                    populatediv();
+                } ,100);
+
+            }
+
+            function populatediv(){
+                const number1=document.getElementById("firstno").value;
+                const number2=document.getElementById("secondno").value;
+                const sum=parseInt(number1)+parseInt(number2);
+                const element=document.getElementById("finalSum");
+                element.innerHTML="Sum is :"+sum;
+            }
+
     </script>
 
     <body>
-        <input  id="firstno" type="text" placeholder="enter first number"></input><br></br>
-        <input oninput="populatediv()" id="secondno" type="text" placeholder="enter second number"></input><br></br>
+        <input oninput="deboucepopulatediv()" id="firstno" type="text" placeholder="enter first number"></input><br></br>
+        <input oninput="deboucepopulatediv()" id="secondno" type="text" placeholder="enter second number"></input><br></br>
         <!-- <button  onclick="populatediv()">submit</button><br></br> -->
         <div id="finalSum"></div>
 
