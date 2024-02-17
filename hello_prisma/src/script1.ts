@@ -21,9 +21,13 @@ async function query() {
 
 
 async function allUsers(){
-    const allUsers=await prisma.user.findMany();
+    const allUsers=await prisma.user.findMany({
+        where:{
+            id:3
+        }
+    });
     console.log(allUsers);
 }
 
-query();
-//allUsers();
+//query();
+allUsers();
