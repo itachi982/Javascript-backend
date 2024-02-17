@@ -6,7 +6,7 @@ async function query() {
     try {
         const Newuser=await prisma.user.create({
             data: {
-                email: "vishalpatsariya89@gmail.com",
+                email: "vishalpatsariya899@gmail.com",
                 name: "vishal"
             }
         });
@@ -25,5 +25,5 @@ async function allUsers(){
     console.log(allUsers);
 }
 
-//query();
-allUsers();
+query();
+//allUsers();
