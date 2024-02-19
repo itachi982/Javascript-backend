@@ -35,6 +35,7 @@ model Course{
   description String
   imageLink String?
   price Int
+  published Boolean
   purchasedBy UserCourse[]
 }
 

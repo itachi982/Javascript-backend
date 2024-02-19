@@ -1,0 +1,29 @@
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+
+async function userMiddleware(req,res,next){
+
+    const dusername=req.headers.username;
+    const dpassword=req.headers.password;
+
+    console.log(dpassword,dusername);
+    
+    const user=await prisma.user.findUnique({
+        where:{
+            username:dusername,
+            password:dpassword
+        }
+    })
+
+    if(user){
+        next();
+    }
+    else{
+        res.status(403).json({
+            msg:"user does not exist"
+        })
+    }
+}
+
+module.exports = userMiddleware;
